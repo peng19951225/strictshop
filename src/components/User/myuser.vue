@@ -4,7 +4,9 @@
       <span class="user-box-sp">
         <i class="el-icon-user-solid"></i>
       </span>
-      <router-link to="/" tag="p">点击登录</router-link>
+      <router-link to="/userDL" tag="p" v-show="this.$store.state.list == ''">点击登录</router-link>
+      <p v-show="this.$store.state.list !== ''">{{this.$store.state.list.uid}}</p>
+      
     </div>
 
     <p class="user-news">

@@ -15,13 +15,19 @@ export default {
 <style lang="scss">
 .nbnbnb{
     position: absolute;
-    top: 10px;
-    left: 30px; 
-    font-size: 0.5rem;
+    top: 20px;
+    left: 20px; 
+    font-size: 0.35rem;
+    z-index: 1999;
+    border: 1px solid white;
+    border-radius: 100%;
+    padding: 10px;
+    text-align: center;
 }
     .returnzj{
-        width: 0.8rem;
-        height: 0.8rem;
+        width: 0.5rem;
+        height: 0.5rem;
         border-radius: 100%;
+        background: white;
     }
 </style>

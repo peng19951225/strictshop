@@ -6,30 +6,33 @@
         <p>砍价列表</p>
       </div>
     </div>
-    <div v-for="(v,i) in barginlist" class="list-body-bargin-box">
-      <router-link :to='"/bargain/"+v.id' tag="div" class="list-body-bargin-box_div">
-        <img :src="v.pic" alt />
-        <div>
-          <p class="bargin-box_til">{{v.name}}</p>
-          <p class="bargin-box_til2">{{v.characteristic}}</p>
-
+    <div v-for="(v,i) in list" class="list-body-bargin-box" style="border-bottom:1px solid #dfdfdf">
+      <div class="list-body-bargin-box_div">
+        <router-link :to="'/bargain/'+v.id"  class="list-body-bargin-box_div" tag="span" >
+        <!-- <router-link :to="{path:'/barginbot/',query:{kjid:list[1][i].id+v.id,joiner:v.id}}"  class="list-body-bargin-box_div" tag="span" > -->
+          <img :src="v.pic" alt />
           <div>
-            <p>
-              <font color="red">{{v.pingtuanPrice}}</font>
+            <p class="bargin-box_til">{{v.name}}</p>
+            <p class="bargin-box_til2">{{v.characteristic}}</p>
 
-              <br />现价
-            </p>
-            <p>
-              {{v.originalPrice}}
-              <br />原价
-            </p>
-            <p>
-              {{v.minScore}}
-              <br />限量
-            </p>
+            <div>
+              <p>
+                <font color="red">{{v.pingtuanPrice}}</font>
+
+                <br />现价
+              </p>
+              <p>
+                {{v.originalPrice}}
+                <br />原价
+              </p>
+              <p>
+                {{v.minScore}}
+                <br />限量
+              </p>
+            </div>
           </div>
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +44,9 @@ const _product = new Product();
 export default {
   data() {
     return {
-      barginlist: []
+      barginlist: [],
+      hloplist: [],
+      list:[]
     };
   },
   components: {
@@ -49,7 +54,8 @@ export default {
   },
   created() {
     _product.barginlist().then(res => {
-      this.barginlist = res.data.data.goodsMap;
+        this.list = res.data.data.goodsMap
+      
     });
   }
 };
@@ -61,13 +67,13 @@ export default {
   height: 2.5rem;
 
   .list-body-bargin-box_div {
+    
     width: 100%;
     height: 90%;
     display: flex;
     font-size: 12px;
     align-items: center;
     padding: 4px 0;
-    border-bottom: 1px solid #dfdfdf;
     > img {
       width: 2rem;
       height: 2.2rem;
@@ -98,6 +104,7 @@ export default {
     }
   }
 }
+
 .bargainhead {
   width: 100%;
   height: 1.2rem;

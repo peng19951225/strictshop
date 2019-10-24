@@ -8,17 +8,19 @@
     </p>
     <div class="moods_div">
       <div v-for="(v,i) in moods">
-        <img :src="v.pic" alt />
-        <p class="moods_p1" v-html="v.title"></p>
-        <p class="moods_p2" v-html="v.descript"></p>
+        <router-link :to="'/special/'+v.id" tag="span">
+          <img :src="v.pic" alt />
+          <p class="moods_p1" v-html="v.title"></p>
+          <p class="moods_p2" v-html="v.descript"></p>
+        </router-link>
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
-import Product from '../../services/list-service.js'
-const _product = new Product()
+import Product from "../../services/list-service.js";
+const _product = new Product();
 export default {
   data() {
     return {
@@ -30,9 +32,9 @@ export default {
     //   console.log(res.data.data);
     //   this.moods = res.data.data;
     // });
-    _product.moodslist().then(res=>{
+    _product.moodslist().then(res => {
       this.moods = res.data.data;
-    })
+    });
   }
 };
 </script>
@@ -56,20 +58,20 @@ export default {
   .moods_div {
     display: flex;
     overflow: auto;
-    >div {
+    > div {
       padding: 10px;
       img {
         width: 6rem;
         height: 4rem;
       }
     }
-    .moods_p1{
-        font-size: 14px;
-        margin:10px 0;
+    .moods_p1 {
+      font-size: 14px;
+      margin: 10px 0;
     }
-    .moods_p2{
-        font-size: 10px;
-        color: #afaeae;
+    .moods_p2 {
+      font-size: 10px;
+      color: #afaeae;
     }
   }
 }

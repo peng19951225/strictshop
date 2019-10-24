@@ -9,7 +9,8 @@ import Classify from '../components/classify/classify.vue'
 
 
 import Myuser from '../components/User/myuser.vue'
-
+import UserZC from '../components/User/userZC.vue'
+import UserDL from '../components/User/userDL.vue'
 
 
 import Barginbot from '../components/bargain/bargin-bot.vue'
@@ -54,6 +55,14 @@ export default new Router({
     {
       path:'/myuser',
       component:Myuser
+    },
+    {
+      path:'/userZC',
+      component:UserZC
+    },
+    {
+      path:'/userDL',
+      component:UserDL
     }
   ]
 })

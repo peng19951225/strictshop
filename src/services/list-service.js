@@ -1,42 +1,98 @@
 import HTTP from '../utils/https'
 const _http = new HTTP()
 
-class Product{
+class Product {
     //人气推荐接口
-    recommendlist(){
+    recommendlist() {
         return _http.request({
-            url:"https://api.it120.cc/small4/shop/goods/kanjia/list"
+            url: "https://api.it120.cc/small4/shop/goods/kanjia/list"
         })
     }
     //精选专题
-    moodslist(){
+    moodslist() {
         return _http.request({
-            url:"https://api.it120.cc/small4/cms/news/list"
+            url: "https://api.it120.cc/small4/cms/news/list"
         })
     }
     //全民砍价
-    barginlist(){
+    barginlist() {
         return _http.request({
-            url:"https://api.it120.cc/small4/shop/goods/kanjia/list"
+            url: "https://api.it120.cc/small4/shop/goods/kanjia/list"
         })
     }
-    //折扣详情页
-    barginUrl(id){
+
+    //商品详情页
+    barginUrl(id) {
         return _http.request({
-            type:"post",
-            url:"https://api.it120.cc/small4/shop/goods/detail",
-            data:{
-                id:id
+            type: "post",
+            url: "https://api.it120.cc/small4/shop/goods/detail",
+            data: {
+                id: id
             }
         })
     }
+    //砍价详情页
+    // chopUrl(id){
+    //     return _http.request({
+    //         type:"post",
+    //         url:"https://api.it120.cc/small4/shop/goods/kanjia/info",
+    //         data:{
+    //             kjid:id.kjid,
+    //             joiner:id.joiner
+    //         }
+    //     })
+    // }
     //文章详情页
-    moodsUrl(id){
+    moodsUrl(id) {
         return _http.request({
-            type:"post",
-            url:"https://api.it120.cc/small4/cms/news/detail",
+            type: "post",
+            url: "https://api.it120.cc/small4/cms/news/detail",
+            data: {
+                id: id
+            }
+        })
+    }
+    //分类
+    classifyUrl() {
+        return _http.request({
+            type: "post",
+            url: "https://api.it120.cc/small4/shop/goods/category/all",
+
+        })
+    }
+    //登录
+    dlUrl(data) {
+        return _http.request({
+            type: "post",
+            url: "https://api.it120.cc/small4/user/m/login?deviceId=007&deviceName=monkey",
+            data: {
+                mobile: data.tel,
+                pwd: data.pass
+            }
+        })
+    }
+    
+    //验证图形验证码并发送短息验证码
+    photocodeUrl(data) {
+        return _http.request({
+            type: "post",
+            url: `https://api.it120.cc/small4/verification/sms/get?mobile=${data.tel}&key=${data.sjnum}&picCode=${data.imgcode}`,
+            // data:{
+            //     mobile:data.tel,
+            //     key:data.sjnum,
+            //     picCode:data.imgcode
+            // }
+        })
+    }
+    //验证手机短信码
+    WCphotocodeUrl(data) {
+        return _http.request({
+            type: "post",
+            url: "https://api.it120.cc/small4/verification/sms/check",
             data:{
-                id:id
+                mobile:data.tel,
+                code:data.smscode
+                // 15652632979
             }
         })
     }

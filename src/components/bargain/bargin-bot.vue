@@ -1,15 +1,25 @@
 <template>
   <div class="barginxqy-boss">
-    <div class="barginxqy-lb-boss">
+    <Returnzj></Returnzj>
+    <!-- <div class="barginxqy-lb-boss">
       <ul class="barginxqy-lb" :style="{right:this.imglet+'px'}">
         <li v-for="(v,i) in list.pics">
           <img :src="v.pic" alt />
         </li>
         <li>
-            <img :src="this.list.pics[indexs].pic" alt="">
+          <img :src="this.list.pics[indexs].pic" alt />
         </li>
       </ul>
-    </div>
+    </div> -->
+    <swiper :options="swiperOption" class="list-lb-swiper">
+      <swiper-slide v-for="(v,i) in list.pics">
+        <img :src="v.pic" alt />
+      </swiper-slide>
+      
+      <div class="swiper-pagination" slot="pagination"></div>
+      <!-- <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>-->
+    </swiper>
 
     <div class="barginxqy-type">
       <span>商品介绍</span>
@@ -23,14 +33,33 @@
 
 <script>
 import Product from "../../services/list-service.js";
+import Returnzj from "../returnzj";
 const _product = new Product();
 export default {
+  components: {
+    Returnzj
+  },
   data() {
     return {
       list: [],
       imglet: 0,
       timer: "",
       indexs: 0,
+      swiperOption: {
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true // 允许点击小圆点跳转
+        },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false // 手动切换之后继续自动轮播
+        },
+        loop: true
+        // navigation: {
+        //   nextEl: ".swiper-button-next",
+        //   prevEl: ".swiper-button-prev"
+        // }
+      },
     };
   },
   methods: {
@@ -50,6 +79,11 @@ export default {
       this.list = res.data.data;
       console.log(this.list);
     });
+    // console.log(this.$route.query)
+    // _product.chopUrl(this.$route.query).then(res => {
+
+    //   console.log(res);
+    // });
   }
 };
 </script>
@@ -92,9 +126,9 @@ export default {
       padding: 10px;
       box-sizing: border-box;
     }
-    span{
-        color: #999999;
-        font-size: 13px;
+    span {
+      color: #999999;
+      font-size: 13px;
     }
     img {
       width: 100% !important;
@@ -102,4 +136,5 @@ export default {
     }
   }
 }
+
 </style>

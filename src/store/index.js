@@ -5,10 +5,13 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-       list:[]
+       list:''
     },
     mutations:{
-        
+        dlcomponent(state,data){
+            state.list = data
+            
+        }
     }
 })
 export default store
